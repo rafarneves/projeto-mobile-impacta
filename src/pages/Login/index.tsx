@@ -25,14 +25,11 @@ export default function LoginPage() {
 
     return (
         <View style={styles.page}>
-
             <InputGroup label="Login" initialValue={username} change={setUsername} />
             <InputGroup label="Password" initialValue={password} change={setPassword} secureTextEntry/>
-            
             <View style={styles.buttonView}>
                 <Button title="Entrar" onPress={signIn}/>
             </View>
-
         </View>
     )
 }

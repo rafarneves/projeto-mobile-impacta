@@ -1,4 +1,4 @@
-import { Alert, Button, FlatList, Text, View } from "react-native";
+import { Alert, Button, FlatList, Text, TouchableHighlight, View } from "react-native";
 
 import { userService } from "../../services/user.service";
 import { User } from "../../models/user.model";
@@ -28,14 +28,16 @@ export default function HomePage() {
             headerLeft: () => <Button title="Sair" onPress={logout} />,
             headerRight: () => (
                 <View style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
-                    <Button title="Add" onPress={goToNewUser} />
+                    <Button title="Cadastrar" onPress={goToNewUser} />
                     <Button title="Roles" onPress={goToRolesPage} />
                 </View>
-                
             )
         })
+
+        navigation.addListener('focus', () => {
+            fetchUsers()
+        })
         
-        fetchUsers()
     },[])
 
     function logout() {
@@ -64,8 +66,7 @@ export default function HomePage() {
     
     return (
         <View>
-            <Text>Página inicial</Text>
-            <Text>Temos {users.length} usuários cadastrados.</Text>
+            <Text style={{ margin: 20, textAlign: 'center', fontSize: 18 }}>Usuários cadastrados: {users.length}</Text>
             <FlatList
                 keyExtractor={user => user.username}
                 onRefresh={fetchUsers}

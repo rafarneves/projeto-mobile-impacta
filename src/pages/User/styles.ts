@@ -22,5 +22,15 @@ export default StyleSheet.create({
     buttonView: {
         marginTop: 40,
         width: Dimensions.get('screen').width - 200
+    },
+    inputRolesView: {
+        width: Dimensions.get('screen').width - 60,
+    },
+    rolesView: {
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        flexWrap: 'wrap',
+        columnGap: 15
     }
 })

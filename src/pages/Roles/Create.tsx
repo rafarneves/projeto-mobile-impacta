@@ -23,7 +23,6 @@ export default function CreateRoles() {
             Alert.alert('A descrição da role é obrigatória')
             return
         }
-
         roleService.create({ name, description }).then(saved => {
             navigation.navigate('Roles')
         }).catch((error: Error) => {
@@ -39,11 +38,9 @@ export default function CreateRoles() {
         <View style={styles.page}>
             <InputGroup label="Nome" initialValue={name} change={setName} />
             <InputGroup label="Descrição" initialValue={description} change={setDescription} />
-            
             <View style={styles.buttonView}>
                 <Button title="Salvar" onPress={save}/>
             </View>
-
         </View>
     )
 }

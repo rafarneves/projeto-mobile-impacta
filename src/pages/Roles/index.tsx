@@ -5,6 +5,7 @@ import { roleService } from "../../services/role.service"
 import { Role } from "../../models/role.model"
 
 import styles from "./styles"
+import ListRole from "../../components/ListRole"
 
 export default function RolesPage() {
 
@@ -20,7 +21,6 @@ export default function RolesPage() {
     function fetchRoles() {
         setRefreshing(true)
         roleService.get().then(list => {
-            console.log(list)
             setRoles(list)
             setRefreshing(false)
         }).catch(error => {
@@ -33,7 +33,9 @@ export default function RolesPage() {
             headerRight: () => <Button title="Cadastrar" onPress={goToCreateRole} />,
         })
 
-        fetchRoles()
+        navigation.addListener('focus', () => {
+            fetchRoles()
+        })
     }, [])
 
     return (
@@ -46,7 +48,7 @@ export default function RolesPage() {
                 refreshing={refreshing}
                 data={roles}
                 renderItem={({ item }) => (
-                    <Text>{item.name}</Text>
+                    <ListRole name={item.name} description={item.description} />
                 )}
             />
         </View>
